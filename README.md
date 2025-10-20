@@ -84,57 +84,6 @@ frontend/
 - **ISP**: Interfaces segregadas por función
 - **DIP**: Dependencias hacia abstracciones
 
-## 🚀 Características
-
-### Backend
-- ✅ **Spring Boot 3.2** con Java 21
-- ✅ **PostgreSQL** como base de datos
-- ✅ **JPA/Hibernate** para persistencia
-- ✅ **MapStruct** para mapeo de DTOs
-- ✅ **OpenAPI 3** para documentación
-- ✅ **Validación** con Bean Validation
-- ✅ **Manejo centralizado** de excepciones
-- ✅ **Health checks** y actuator
-
-### Frontend
-- ✅ **Angular 17** con standalone components
-- ✅ **Angular Material** para UI
-- ✅ **Bootstrap 5** para layout responsive
-- ✅ **TypeScript** con tipado estricto
-- ✅ **Reactive forms** para formularios
-- ✅ **HTTP interceptors** para manejo de errores
-- ✅ **Lazy loading** para optimización
-
-### DevOps
-- ✅ **Docker** con imágenes optimizadas
-- ✅ **Docker Compose** para orquestación de servicios
-- ✅ **Multi-stage builds** para reducir tamaño
-- ✅ **Nginx** como proxy reverso para frontend
-- ✅ **Health checks** en todos los servicios
-- ✅ **CORS** configurado correctamente
-- ✅ **Separación por capas** en contenedores independientes
-
-## 📊 Modelo de Datos
-
-### Facultad
-- `facultad_id` (PK)
-- `nombre` (único)
-- `descripcion`
-- `ubicacion`
-- `decano`
-- `fecha_registro`
-- `activo`
-
-### Carrera
-- `carrera_id` (PK)
-- `facultad_id` (FK)
-- `nombre` (único)
-- `descripcion`
-- `duracion_semestres`
-- `titulo_otorgado`
-- `fecha_registro`
-- `activo`
-
 ## 🛠️ Instalación y Uso
 
 ### Prerrequisitos
@@ -292,19 +241,6 @@ cp .env.example .env
 - **`docker`**: Contenedores Docker
 - **`test`**: Pruebas con H2 en memoria
 
-## 🧪 Testing
-
-```bash
-# Ejecutar todas las pruebas
-./mvnw test
-
-# Ejecutar solo pruebas unitarias
-./mvnw test -Dtest="*UnitTest"
-
-# Ejecutar solo pruebas de integración
-./mvnw test -Dtest="*IntegrationTest"
-```
-
 ## 🔧 Resolución de Problemas
 
 ### CORS Issues
@@ -403,23 +339,10 @@ curl -X POST http://localhost:8080/api/v1/facultades \
   -d '{"nombre":"Ingeniería","descripcion":"Facultad de Ingeniería","ubicacion":"Campus Norte","decano":"Dr. Juan Pérez"}'
 ```
 
-## 🤝 Contribución
-
-1. Fork del proyecto
-2. Crear rama feature (`git checkout -b feature/nueva-funcionalidad`)
-3. Commit cambios (`git commit -am 'Agregar nueva funcionalidad'`)
-4. Push a la rama (`git push origin feature/nueva-funcionalidad`)
-5. Crear Pull Request
-
 ## 📝 Licencia
 
 Este proyecto está bajo la licencia MIT. Ver `LICENSE` para más detalles.
 
-## 👥 Autores
-
-- **Equipo de Desarrollo Universidad** - *Desarrollo inicial*
-
 ## 📞 Contacto
 
-- Email: desarrollo@universidad.edu
-- Website: https://universidad.edu
+- Email: jordy.amaro@gmail.com.pe
