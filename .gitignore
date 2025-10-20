@@ -1,0 +1,166 @@
+# ================================
+# GITIGNORE - UNIVERSIDAD SYSTEM
+# ================================
+
+# ================================
+# LOGS Y TEMPORALES
+# ================================
+*.log
+logs/
+tmp/
+temp/
+
+# ================================
+# DEPENDENCIAS DE NODE / ANGULAR
+# ================================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+
+# Angular específicos
+.angular/
+.sass-cache/
+
+# ================================
+# JAVA / SPRING BOOT / MAVEN
+# ================================
+target/
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# Maven
+.mvn/wrapper/maven-wrapper.jar
+.mvn/wrapper/maven-wrapper.properties
+.mvn/wrapper/MavenWrapperDownloader.java
+
+# Gradle
+.gradle/
+build/
+gradle-app.setting
+!gradle-wrapper.jar
+!gradle-wrapper.properties
+
+# Spring Boot
+application-*.properties
+application-*.yml
+!application.properties
+!application.yml
+
+# ================================
+# ARCHIVOS DE CONSTRUCCIÓN
+# ================================
+dist/
+build/
+out/
+
+# Angular build
+frontend/dist/
+frontend/build/
+
+# Java compilados
+*.class
+
+# ================================
+# ARCHIVOS DE IDE
+# ================================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Eclipse
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+.metadata
+.factorypath
+
+# IntelliJ IDEA
+*.iws
+*.iml
+*.ipr
+
+# NetBeans
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+# VS Code
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# ================================
+# ARCHIVOS DE SISTEMA
+# ================================
+.DS_Store
+Thumbs.db
+
+# ================================
+# DOCKER
+# ================================
+.docker/
+.dockerignore
+
+# Docker Compose override files
+docker-compose.override.yml
+docker-compose.override.yaml
+
+# ================================
+# TESTING
+# ================================
+# Coverage reports
+coverage/
+*.lcov
+.nyc_output
+
+# Jest
+coverage/
+
+# Spring Boot test
+**/test-results/
+**/test-reports/
+
+# ================================
+# BASES DE DATOS LOCALES
+# ================================
+*.db
+*.sqlite
+*.sqlite3
+
+# ================================
+# ARCHIVOS DE BACKUP
+# ================================
+*.backup
+*.bak
+*.tmp
+
+# ================================
+# CERTIFICADOS Y KEYS
+# ================================
+*.pem
+*.key
+*.crt
+*.p12
+*.jks
+
+# ================================
+# ARCHIVOS TEMPORALES DE JAVA
+# ================================
+hs_err_pid*
+replay_pid*

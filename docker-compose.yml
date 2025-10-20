@@ -1,0 +1,137 @@
+version: '3.8'
+
+# ================================
+# SERVICIOS DE LA UNIVERSIDAD
+# ================================
+services:
+  
+  # ================================
+  # BASE DE DATOS POSTGRESQL
+  # ================================
+  postgres-db:
+    image: postgres:15-alpine
+    container_name: universidad-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      PGDATA: /var/lib/postgresql/data/pgdata
+    ports:
+      - "${DATABASE_PORT}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    networks:
+      - universidad-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+
+  # ================================
+  # API BACKEND UNIVERSIDAD
+  # ================================
+  universidad-api:
+    build:
+      context: ./backend-api
+      dockerfile: Dockerfile
+    container_name: universidad-api
+    restart: unless-stopped
+    ports:
+      - "${API_PORT}:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: ${SPRING_PROFILES_ACTIVE}
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-db:5432/${POSTGRES_DB}
+      SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER}
+      SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD}
+    depends_on:
+      postgres-db:
+        condition: service_healthy
+    networks:
+      - universidad-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/actuator/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
+    volumes:
+      - api_logs:/app/logs
+
+  # ================================
+  # FRONTEND ANGULAR
+  # ================================
+  universidad-frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: universidad-frontend
+    restart: unless-stopped
+    ports:
+      - "${FRONTEND_PORT}:80"
+    depends_on:
+      universidad-api:
+        condition: service_healthy
+    networks:
+      - universidad-network
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:80/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    volumes:
+      - frontend_logs:/var/log/nginx
+
+  # ================================
+  # PGADMIN (OPCIONAL - PARA DESARROLLO)
+  # ================================
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: universidad-pgadmin
+    restart: unless-stopped
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD}
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    ports:
+      - "${PGADMIN_PORT}:80"
+    depends_on:
+      - postgres-db
+    networks:
+      - universidad-network
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    profiles:
+      - development
+
+# ================================
+# VOLÚMENES PERSISTENTES
+# ================================
+volumes:
+  postgres_data:
+    driver: local
+    name: universidad_postgres_data
+  
+  pgadmin_data:
+    driver: local
+    name: universidad_pgadmin_data
+  
+  api_logs:
+    driver: local
+    name: universidad_api_logs
+    
+  frontend_logs:
+    driver: local
+    name: universidad_frontend_logs
+
+# ================================
+# RED INTERNA
+# ================================
+networks:
+  universidad-network:
+    driver: bridge
+    name: universidad_network
