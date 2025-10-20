@@ -25,6 +25,9 @@ RUN mvn clean package -DskipTests -B && \
 # ================================
 FROM eclipse-temurin:21-jre-alpine
 
+# Instalar wget para health check
+RUN apk add --no-cache wget
+
 # Establecer directorio de trabajo
 WORKDIR /app
 
@@ -45,9 +48,9 @@ ENV JAVA_TOOL_OPTIONS="-XX:MaxRAMPercentage=75.0 \
 # Puerto expuesto
 EXPOSE 8080
 
-# Health check usando netcat
-HEALTHCHECK --interval=30s --timeout=3s --start-period=60s --retries=3 \
-    CMD nc -z localhost 8080 || exit 1
+# Health check muy simple y efectivo
+HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
+    CMD wget -q --spider http://localhost:8080/actuator/health || exit 1
 
 # Comando principal optimizado
 ENTRYPOINT ["java", "org.springframework.boot.loader.launch.JarLauncher"]
