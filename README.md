@@ -1,6 +1,6 @@
 # Universidad - Sistema de Gestión Completo
 
-Sistema completo de gestión universitaria con **Angular 17** frontend y **Spring Boot 3.2** backend, desarrollado siguiendo los principios **SOLID** y arquitectura limpia por capas.
+Sistema CRUD facultad y carrera con **Angular 17** frontend y **Spring Boot 3.2** backend, desarrollado siguiendo los principios **SOLID** y arquitectura por capas.
 
 ## 🚀 Inicio Rápido
 
@@ -345,4 +345,4 @@ Este proyecto está bajo la licencia MIT. Ver `LICENSE` para más detalles.
 
 ## 📞 Contacto
 
-- Email: jordy.amaro@gmail.com.pe
+- Email: jordy.amaro@gmail.com
