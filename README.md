@@ -6,7 +6,7 @@ Sistema CRUD facultad y carrera con **Angular 17** frontend y **Spring Boot 3.2*
 
 ```bash
 # 1. Clonar el repositorio
-git clone <repository-url>
+git clone https://github.com/kamaro600/capasbackdocker.git
 cd capasbackdocker
 
 # 2. Configurar variables de entorno
