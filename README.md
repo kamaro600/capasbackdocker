@@ -95,13 +95,13 @@ frontend/
 
 1. **Clonar repositorio**
 ```bash
-git clone <repository-url>
+git clone https://github.com/kamaro600/capasbackdocker.git
 cd capasbackdocker
 ```
 
 2. **Configurar variables de entorno**
 ```bash
-# Copiar archivo de ejemplo
+# Copiar archivo de ejemplo en caso se cambie de BD por una diferente del docker compose
 cp .env.example .env
 
 # Editar las credenciales según tu entorno
@@ -276,26 +276,6 @@ docker exec -it universidad-postgres psql -U universidad_user -d universidad_db
 
 # Ver datos
 SELECT * FROM facultades;
-```
-
-## 🔒 Seguridad
-
-### Variables de Entorno
-- ✅ **No commitear** el archivo `.env` al repositorio
-- ✅ **Usar contraseñas seguras** en producción
-- ✅ **Rotar credenciales** regularmente
-- ✅ **Revisar** el archivo `.gitignore` incluye `.env`
-
-### Buenas Prácticas
-```bash
-# Verificar que .env no esté en git
-git status
-
-# Generar contraseñas seguras
-openssl rand -base64 32
-
-# Cambiar credenciales por defecto
-# Editar .env con valores únicos para tu entorno
 ```
 
 ## 📈 Monitoring
