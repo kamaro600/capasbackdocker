@@ -11,8 +11,11 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 /**
- * DTO de respuesta para Facultad.
- * Sigue el principio SRP - solo maneja la transferencia de datos de facultad.
+ * DTO de respuesta para Facultad - Patrón MVC.
+ * DATA TRANSFER OBJECT: Transporta datos desde el Model hacia la View
+ * - Define la estructura de datos que retorna la API
+ * - Separa la representación externa de la entidad interna
+ * - Controla qué información se expone al cliente
  */
 @Data
 @Builder

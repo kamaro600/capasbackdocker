@@ -10,8 +10,12 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * Repositorio para la entidad Facultad.
- * Sigue el principio ISP (Interface Segregation Principle) - métodos específicos y cohesivos.
+ * Repositorio para la entidad Facultad - Patrón MVC.
+ * REPOSITORY: Capa de acceso a datos en el patrón MVC
+ * - Abstrae el acceso a la base de datos
+ * - Proporciona métodos CRUD y consultas específicas
+ * - Extiende JpaRepository para operaciones básicas
+ * - Define consultas personalizadas para el dominio
  */
 @Repository
 public interface FacultadRepository extends JpaRepository<Facultad, Long> {

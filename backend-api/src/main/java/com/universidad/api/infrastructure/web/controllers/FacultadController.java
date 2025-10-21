@@ -18,11 +18,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
- * Controlador REST para Facultades.
- * Sigue los principios SOLID:
- * - SRP: Solo maneja operaciones HTTP para facultades
- * - OCP: Extensible para nuevas operaciones
- * - DIP: Depende de la abstracción FacultadService
+ * Controlador REST para Facultades - Patrón MVC.
+ * CONTROLLER: Maneja las peticiones HTTP y coordina entre View y Model
+ * - Recibe requests HTTP
+ * - Valida datos de entrada
+ * - Delega lógica de negocio al Service
+ * - Retorna respuestas HTTP apropiadas
  */
 @Slf4j
 @RestController
@@ -31,6 +32,7 @@ import java.util.List;
 @Tag(name = "Facultades", description = "Operaciones CRUD para gestión de facultades")
 public class FacultadController {
     
+    // Inyección de dependencia del Service (parte del Model en MVC)
     private final FacultadService facultadService;
     
     @Operation(summary = "Crear nueva facultad", description = "Crea una nueva facultad en el sistema")
@@ -44,7 +46,7 @@ public class FacultadController {
             @Parameter(description = "Datos de la facultad a crear")
             @Valid @RequestBody FacultadRequestDTO requestDTO) {
         
-        log.info("REST: Creando nueva facultad: {}", requestDTO.getNombre());
+        log.info("Creando nueva facultad: {}", requestDTO.getNombre());
         FacultadResponseDTO response = facultadService.crear(requestDTO);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
@@ -59,7 +61,7 @@ public class FacultadController {
             @Parameter(description = "ID de la facultad")
             @PathVariable Long id) {
         
-        log.info("REST: Obteniendo facultad por ID: {}", id);
+        log.info("Obteniendo facultad por ID: {}", id);
         FacultadResponseDTO response = facultadService.obtenerPorId(id);
         return ResponseEntity.ok(response);
     }
@@ -71,7 +73,7 @@ public class FacultadController {
             @Parameter(description = "Filtrar solo facultades activas")
             @RequestParam(required = false, defaultValue = "false") boolean soloActivas) {
         
-        log.info("REST: Obteniendo todas las facultades (soloActivas: {})", soloActivas);
+        log.info("Obteniendo todas las facultades (soloActivas: {})", soloActivas);
         
         List<FacultadResponseDTO> response = soloActivas 
             ? facultadService.obtenerActivas()
@@ -94,7 +96,7 @@ public class FacultadController {
             @Parameter(description = "Nuevos datos de la facultad")
             @Valid @RequestBody FacultadRequestDTO requestDTO) {
         
-        log.info("REST: Actualizando facultad ID: {}", id);
+        log.info("Actualizando facultad ID: {}", id);
         FacultadResponseDTO response = facultadService.actualizar(id, requestDTO);
         return ResponseEntity.ok(response);
     }
@@ -109,7 +111,7 @@ public class FacultadController {
             @Parameter(description = "ID de la facultad a eliminar")
             @PathVariable Long id) {
         
-        log.info("REST: Eliminando facultad ID: {}", id);
+        log.info("Eliminando facultad ID: {}", id);
         facultadService.eliminar(id);
         return ResponseEntity.noContent().build();
     }
@@ -124,7 +126,7 @@ public class FacultadController {
             @Parameter(description = "Nombre de la facultad a buscar")
             @PathVariable String nombre) {
         
-        log.info("REST: Buscando facultad por nombre: {}", nombre);
+        log.info("Buscando facultad por nombre: {}", nombre);
         FacultadResponseDTO response = facultadService.buscarPorNombre(nombre);
         return ResponseEntity.ok(response);
     }
@@ -136,7 +138,7 @@ public class FacultadController {
             @Parameter(description = "Nombre del decano a buscar")
             @RequestParam String decano) {
         
-        log.info("REST: Buscando facultades por decano: {}", decano);
+        log.info("Buscando facultades por decano: {}", decano);
         List<FacultadResponseDTO> response = facultadService.buscarPorDecano(decano);
         return ResponseEntity.ok(response);
     }

@@ -6,8 +6,11 @@ import com.universidad.api.application.dto.FacultadResponseDTO;
 import java.util.List;
 
 /**
- * Interfaz del servicio de Facultad.
- * Sigue el principio ISP (Interface Segregation Principle) y DIP (Dependency Inversion Principle).
+ * Interfaz del servicio de Facultad - Patrón MVC.
+ * SERVICE: Capa de lógica de negocio en el patrón MVC
+ * - Define las operaciones de negocio disponibles
+ * - Abstrae la lógica de negocio del controlador
+ * - Coordina entre el Controller y el Repository
  */
 public interface FacultadService {
     

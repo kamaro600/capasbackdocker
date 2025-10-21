@@ -9,8 +9,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * DTO de solicitud para crear/actualizar Facultad.
- * Sigue el principio SRP - solo maneja validación y transferencia de datos de entrada.
+ * DTO de solicitud para Facultad - Patrón MVC.
+ * DATA TRANSFER OBJECT: Transporta datos entre capas del MVC
+ * - Valida datos de entrada desde el Controller
+ * - Define la estructura de datos que acepta la API
+ * - Separa la representación externa de la entidad interna
  */
 @Data
 @Builder

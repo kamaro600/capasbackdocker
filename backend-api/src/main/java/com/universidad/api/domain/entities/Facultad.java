@@ -11,8 +11,12 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 /**
- * Entidad Facultad que representa una facultad universitaria.
- * Sigue el principio SRP (Single Responsibility Principle) - solo maneja datos de facultad.
+ * Entidad Facultad - Patrón MVC.
+ * MODEL: Representa los datos y la lógica de negocio en el patrón MVC
+ * - Define la estructura de datos de Facultad
+ * - Maneja la persistencia con JPA/Hibernate
+ * - Contiene las reglas de negocio a nivel de entidad
+ * - Representa el estado y comportamiento del dominio
  */
 @Entity
 @Table(name = "facultad")

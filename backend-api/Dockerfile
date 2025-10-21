@@ -31,7 +31,7 @@ RUN apk add --no-cache wget
 # Establecer directorio de trabajo
 WORKDIR /app
 
-# Copiar dependencias y aplicación por capas (mejor cacheo)
+# Copiar dependencias y aplicación por capas
 COPY --from=builder /app/dependencies/ ./
 COPY --from=builder /app/spring-boot-loader/ ./
 COPY --from=builder /app/snapshot-dependencies/ ./

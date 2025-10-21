@@ -8,8 +8,12 @@ import org.mapstruct.*;
 import java.util.List;
 
 /**
- * Mapper para Facultad siguiendo el principio ISP (Interface Segregation Principle).
- * Separa las responsabilidades de mapeo en métodos específicos.
+ * Mapper para Facultad - Patrón MVC.
+ * MAPPER: Convierte entre diferentes representaciones de datos
+ * - Transforma entidades (Model) a DTOs (View)
+ * - Convierte DTOs de entrada a entidades
+ * - Mantiene separación entre capas del MVC
+ * - Utiliza MapStruct para mapeo automático
  */
 @Mapper(
     componentModel = "spring",
@@ -21,7 +25,7 @@ public interface FacultadMapper {
     
     /**
      * Convierte una entidad Facultad a DTO de respuesta.
-     * Sigue el principio SRP - una sola responsabilidad de conversión.
+     * Model -> View: Transforma datos internos para presentación
      */
     @Mapping(target = "carreras", source = "carreras")
     FacultadResponseDTO toResponseDTO(Facultad facultad);
@@ -33,7 +37,7 @@ public interface FacultadMapper {
     
     /**
      * Convierte un DTO de request a entidad Facultad.
-     * Ignora campos que no deben ser mapeados directamente.
+     * View -> Model: Transforma datos de entrada a entidad de dominio
      */
     @Mapping(target = "facultadId", ignore = true)
     @Mapping(target = "fechaRegistro", ignore = true)
@@ -42,7 +46,7 @@ public interface FacultadMapper {
     
     /**
      * Actualiza una entidad existente con los datos del DTO request.
-     * Sigue el principio OCP - abierto para extensión, cerrado para modificación.
+     * Mantiene la integridad del Model al actualizar solo campos permitidos
      */
     @Mapping(target = "facultadId", ignore = true)
     @Mapping(target = "fechaRegistro", ignore = true)

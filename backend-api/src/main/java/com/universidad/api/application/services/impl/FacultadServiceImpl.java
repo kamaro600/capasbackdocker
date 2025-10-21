@@ -15,13 +15,12 @@ import jakarta.persistence.EntityNotFoundException;
 import java.util.List;
 
 /**
- * Implementación del servicio de Facultad.
- * Sigue los principios SOLID:
- * - SRP: Responsabilidad única de gestionar facultades
- * - OCP: Abierto para extensión a través de la interfaz
- * - LSP: Implementa correctamente la interfaz FacultadService
- * - ISP: Interfaz segregada específica para facultades
- * - DIP: Depende de abstracciones (FacultadRepository, FacultadMapper)
+ * Implementación del servicio de Facultad - Patrón MVC.
+ * SERVICE IMPLEMENTATION: Implementa la lógica de negocio
+ * - Implementa las reglas de negocio específicas
+ * - Coordina operaciones entre Repository y Mapper
+ * - Maneja transacciones y validaciones
+ * - Transforma entidades a DTOs usando Mappers
  */
 @Slf4j
 @Service
@@ -29,7 +28,9 @@ import java.util.List;
 @Transactional
 public class FacultadServiceImpl implements FacultadService {
     
+    // Inyección de dependencia del Repository (acceso a datos)
     private final FacultadRepository facultadRepository;
+    // Inyección de dependencia del Mapper (transformación de datos)
     private final FacultadMapper facultadMapper;
     
     @Override
