@@ -10,8 +10,7 @@ git clone <repository-url>
 cd capasbackdocker
 
 # 2. Configurar variables de entorno
-cp .env.example .env
-# Editar .env con tus credenciales de base de datos
+# Editar .env con tus credenciales de base de datos. Para este proyecto dejar por defecto
 
 # 3. Iniciar todos los servicios con Docker
 docker-compose up --build -d
